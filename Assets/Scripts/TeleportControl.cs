@@ -26,7 +26,7 @@ public class TeleportControl : MonoBehaviour
         if (Input.GetButton("Fire2"))
         {
             doTeleport = true;
-            if (Physics.Raycast(transform.position, transform.forward, out hit, 5))
+            if (Physics.Raycast(transform.position, transform.forward, out hit,10))
             {
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
                 Debug.Log(hit.point);
