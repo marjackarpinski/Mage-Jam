@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 227aa34f56e3fa7439f366530c2b80d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeBetweenBullets: 0.2
   bulletStartingPoint: {fileID: 358322741}
   bulletPrefab: {fileID: 637171618639788257, guid: 70efc73cce4ba2242b49b3b406f1f65a,
     type: 3}
