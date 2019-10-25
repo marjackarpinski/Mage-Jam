@@ -25,7 +25,6 @@ public class Shooter : MonoBehaviour
             // Does the ray intersect any objects excluding the player layer
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, Mathf.Infinity))
             {
-                Debug.Log(hit.transform.gameObject);
                 var bulletObject = Instantiate(bulletPrefab, bulletStartingPoint.position, Quaternion.identity);
                 bulletObject.transform.LookAt(hit.point);
             }
