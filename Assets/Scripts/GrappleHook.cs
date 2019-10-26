@@ -1,54 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class GrappleHook : MonoBehaviour
 {
     [SerializeField]
-    private GameObject parent;
+    private Transform hostTransform;
 
-    [SerializeField]
-    private GameObject pointX;
+    private Transform mainCamera;
 
-    RaycastHit hit;
-    Vector3 rayedElementPoint;
-    bool doGrapple = false;
-    bool unClicked = false;
+    private FirstPersonController fpsController;
+
+    private void Start()
+    {
+        mainCamera = Camera.main.transform;
+        fpsController = hostTransform.GetComponent<FirstPersonController>();
+    }
 
     void Update()
     {
         //1. znalezienie powierzchni grapple 
 
-        if (Input.GetButtonDown("Fire2"))
+        if (Input.GetButton("Fire2"))
         {
-            unClicked = !unClicked;
-
-            if (Physics.Raycast(transform.position, transform.forward, out hit, 15) && !doGrapple)
+            if (Physics.Raycast(mainCamera.position, mainCamera.forward, out RaycastHit hit, 15))
             {
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-                rayedElementPoint = hit.point;
-                doGrapple = true;
-                pointX.SetActive(true);
-                
-                pointX.transform.position = rayedElementPoint;
-            } else if (doGrapple && !unClicked)
-            {
-                    doGrapple = false;
-                    pointX.SetActive(false);
-
+                hostTransform.position = Vector3.Lerp(hostTransform.position, hit.point, 0.1f);
             }
-
         }
-
-        //2. grapple follow
-
-        if(doGrapple)
-        {
-
-            Vector3 direction = rayedElementPoint- parent.transform.position;
-            Debug.Log(direction);
-            parent.GetComponent<Rigidbody>().AddForce(direction * 202);
-        }
-        
     }
 }
