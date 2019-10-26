@@ -8,6 +8,8 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     private float bulletSpeed;
 
+    private float bulletForce = 20;
+
     // Update is called once per frame
     void Update()
     {
@@ -20,6 +22,7 @@ public class Bullet : MonoBehaviour
         if (damagableObject != null)
         {
             damagableObject.TakeDamage(bulletDamage);
+            other.attachedRigidbody.AddForce(transform.forward * bulletForce);
         }
         Destroy(gameObject);
     }

@@ -46,14 +46,7 @@ public class Shooter : MonoBehaviour
             {
                 Debug.Log(hit.transform.tag);
                 var bulletObject = Instantiate(bulletPrefab, bulletStartingPoint.position, Quaternion.identity);
-                if (hit.transform.CompareTag("Player"))
-                {
-                    bulletObject.transform.LookAt(Camera.main.transform.position + Camera.main.transform.forward);
-                }
-                else
-                {
-                    bulletObject.transform.LookAt(hit.point);
-                }
+                bulletObject.transform.LookAt(hit.point);
 
                 gun.GetComponent<Animator>().SetTrigger("Fire");
                 gunBurst.Play();
