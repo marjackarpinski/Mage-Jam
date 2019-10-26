@@ -13,6 +13,9 @@ public class Shooter : MonoBehaviour
     [SerializeField]
     private GameObject bulletPrefab;
 
+    [SerializeField]
+    private ParticleSystem gunBurst;
+
     private void Start()
     {
         lastBulletTime = Time.time;
@@ -27,6 +30,7 @@ public class Shooter : MonoBehaviour
             {
                 var bulletObject = Instantiate(bulletPrefab, bulletStartingPoint.position, Quaternion.identity);
                 bulletObject.transform.LookAt(hit.point);
+                gunBurst.Play();
             }
             lastBulletTime = 0;
         }

@@ -15,18 +15,13 @@ public class TeleportControl : MonoBehaviour
     bool doTeleport = false;
     // on rpm show teleport and after release teleport there
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
     // Update is called once per frame
     void FixedUpdate()
     {
         if (Input.GetButton("Fire2"))
         {
             doTeleport = true;
-            if (Physics.Raycast(transform.position, transform.forward, out hit,10))
+            if (Physics.Raycast(transform.position, transform.forward, out hit, 10))
             {
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
                 Debug.Log(hit.point);
@@ -34,6 +29,10 @@ public class TeleportControl : MonoBehaviour
 
                 teleport.SetActive(true);
                 teleport.transform.position = rayedElementLocation;
+                Debug.Log($"rotation {teleport.transform.rotation}, normal {hit.normal}");
+                teleport.transform.LookAt(hit.point + hit.normal);
+                teleport.transform.position += teleport.transform.forward * 0.05f;
+                Debug.Log($"rotation {teleport.transform.rotation}");
             }   
             else
             {
