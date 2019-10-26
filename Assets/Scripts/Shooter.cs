@@ -7,17 +7,21 @@ public class Shooter : MonoBehaviour
     private LayerMask raycastingLayer;
 
     [SerializeField]
-    private float timeBetweenBullets = 0.15f;
+    private float timeBetweenBullets = 0.3f;
     private float lastBulletTime;
 
     [SerializeField]
     private Transform bulletStartingPoint;
 
     [SerializeField]
+    private GameObject gun;
+
+    [SerializeField]
     private GameObject bulletPrefab;
 
     [SerializeField]
     private ParticleSystem gunBurst;
+
 
     private void Start()
     {
@@ -51,7 +55,7 @@ public class Shooter : MonoBehaviour
                     bulletObject.transform.LookAt(hit.point);
                 }
 
-
+                gun.GetComponent<Animator>().SetTrigger("Fire");
                 gunBurst.Play();
             }
             lastBulletTime = 0;
