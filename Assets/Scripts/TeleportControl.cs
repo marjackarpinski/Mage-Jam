@@ -23,8 +23,8 @@ public class TeleportControl : MonoBehaviour
             doTeleport = true;
             if (Physics.Raycast(transform.position, transform.forward, out hit, 10))
             {
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-                Debug.Log(hit.point);
+                //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+                //Debug.Log(hit.point);
                 rayedElementLocation = hit.point;
 
                 teleport.SetActive(true);
@@ -36,13 +36,13 @@ public class TeleportControl : MonoBehaviour
             }   
             else
             {
-                Debug.Log("HWDP");
+                //Debug.Log("HWDP");
             }
         }else if(doTeleport)
         {
             doTeleport = false;
             parent.transform.position = rayedElementLocation;    
-            Debug.Log("BOM");
+            //Debug.Log("BOM");
             teleport.SetActive(false);
 
         }
