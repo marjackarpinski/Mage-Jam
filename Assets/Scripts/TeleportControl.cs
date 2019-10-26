@@ -37,13 +37,13 @@ public class TeleportControl : MonoBehaviour
             }   
             else
             {
-                Debug.Log("HWDP");
+                //Debug.Log("HWDP");
             }
         }else if(doTeleport)
         {
             doTeleport = false;
             parent.transform.position = rayedElementLocation;    
-            Debug.Log("BOM");
+            //Debug.Log("BOM");
             teleport.SetActive(false);
 
         }
